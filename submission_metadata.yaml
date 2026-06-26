@@ -1,0 +1,77 @@
+# ============================================================
+# submission_metadata.yaml
+# Fill in the blanks (marked TODO) before submitting
+# ============================================================
+
+team_name: "TODO: your-team-name-from-intro-session"
+
+primary_contact:
+  name: "Anusha Puppala"
+  email: "anushapuppala2002@gmail.com"
+  phone: "TODO: +91-XXXXXXXXXX"
+
+team_members:
+  - name: "Anusha Puppala"
+    email: "anushapuppala2002@gmail.com"
+    role: "Solo participant — ML + Data Science"
+
+# ============================================================
+# Code and reproducibility
+# ============================================================
+github_repo: "TODO: https://github.com/YOUR_USERNAME/redrob-ranker"
+
+sandbox_link: "TODO: https://huggingface.co/spaces/YOUR_USERNAME/redrob-ranker"
+
+reproduce_command: "python scripts/rank.py --candidates data/candidates.jsonl --out outputs/submission.xlsx"
+
+# ============================================================
+# Compute environment (fill after running on your machine)
+# ============================================================
+compute:
+  platform: "TODO: e.g. Dell Laptop, Windows 11"
+  cpu_cores: 0          # TODO: fill from nproc / Task Manager
+  ram_gb: 0             # TODO: fill
+  python_version: "TODO: python --version"
+  os: "TODO: e.g. Windows 11 / Ubuntu 22.04"
+  uses_gpu_for_inference: false         # MUST be false
+  has_network_during_ranking: false     # MUST be false
+  pre_computation_required: true
+  pre_computation_time_minutes: 20      # approx — update after running precompute.py
+
+# ============================================================
+# AI tools declaration
+# ============================================================
+ai_tools_used:
+  - "Claude"   # architecture, code review, guided development
+
+ai_usage_summary: |
+  Used Claude (claude.ai) for architectural guidance, code review, and
+  step-by-step development discussion. All code written and understood
+  by the participant. No candidate data was fed to any external LLM.
+  The ranking logic, scoring weights, and JD requirements config are
+  original design decisions made by the participant.
+
+# ============================================================
+# Approach summary
+# ============================================================
+methodology_summary: |
+  Two-phase hybrid ranking system. Phase 1 (offline): sentence-transformer
+  embeddings (all-MiniLM-L6-v2) pre-computed for all 100K candidates and
+  saved as float16 numpy arrays. Structured features (title category,
+  company type, location match, trajectory, skill counts) pre-computed
+  as a parquet file. Phase 2 (online, <5 min CPU, no network): cosine
+  similarity between pre-saved embeddings, combined with rule-based
+  scores from jd_config.json, and a multiplicative behavioral signal
+  modifier (recency, response rate, open_to_work, notice period).
+  Honeypot detection via internal consistency checks. Per-candidate
+  reasoning generated from actual profile facts, not templates.
+
+# ============================================================
+# Declarations
+# ============================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: false    # set true after final end-to-end test

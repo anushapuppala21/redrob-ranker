@@ -1,0 +1,5 @@
+# jd_config.json — Structured JD requirements
+# This file is built in Phase 2 after reading the job description carefully.
+# It drives ALL rule-based scoring in rank.py.
+# Placeholder — will be populated in the next phase.
+{}
