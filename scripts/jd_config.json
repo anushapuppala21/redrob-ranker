@@ -1,5 +1,167 @@
-# jd_config.json — Structured JD requirements
-# This file is built in Phase 2 after reading the job description carefully.
-# It drives ALL rule-based scoring in rank.py.
-# Placeholder — will be populated in the next phase.
-{}
+{
+  "_comment": "jd_config.json — Structured requirements extracted from the Redrob Senior AI Engineer JD. This file drives ALL rule-based scoring in rank.py. Do not modify without re-reading the JD.",
+
+  "role": "Senior AI Engineer — Founding Team",
+  "company": "Redrob AI",
+  "jd_summary": "Series A AI-native talent platform hiring a founding AI engineer to own retrieval, ranking, and matching systems. Needs a shipper, not a researcher. Product company experience mandatory. Must write code, not just architect.",
+
+  "jd_text_for_embedding": "Senior AI Engineer with production experience in embeddings-based retrieval systems, vector databases, hybrid search, semantic search, and ranking evaluation frameworks. Experience with sentence-transformers, FAISS, Pinecone, Weaviate, Elasticsearch, or similar. Strong Python. Hands-on with NDCG, MRR, MAP evaluation. LLM integration, fine-tuning with LoRA or QLoRA a plus. Worked at product companies, not consulting. Shipped end-to-end ranking or recommendation systems to real users. 5-9 years experience. Located in India, preferably Pune or Noida.",
+
+  "experience": {
+    "target_min_years": 5,
+    "target_max_years": 9,
+    "hard_min_years": 3,
+    "hard_max_years": 20,
+    "scoring": {
+      "3-4":   0.5,
+      "5-9":   1.0,
+      "10-12": 0.8,
+      "13-20": 0.5,
+      "20+":   0.2
+    }
+  },
+
+  "title_patterns": {
+    "_comment": "Scored against current_title (lowercased). Score = best matching pattern score.",
+    "strong_match": {
+      "score": 1.0,
+      "patterns": [
+        "ai engineer", "ml engineer", "machine learning engineer",
+        "applied scientist", "research engineer", "nlp engineer",
+        "search engineer", "ranking engineer", "retrieval engineer",
+        "senior ai", "senior ml", "lead ai", "lead ml",
+        "staff ml", "staff ai", "principal ai", "principal ml"
+      ]
+    },
+    "good_match": {
+      "score": 0.75,
+      "patterns": [
+        "data scientist", "applied ml", "ai researcher",
+        "ml researcher", "deep learning engineer", "computer vision engineer",
+        "mlops engineer", "platform engineer", "backend engineer",
+        "software engineer", "senior software", "software developer"
+      ]
+    },
+    "weak_match": {
+      "score": 0.35,
+      "patterns": [
+        "data engineer", "analytics engineer", "data analyst",
+        "full stack", "fullstack", "cloud engineer", "devops engineer",
+        "solutions architect", "tech lead"
+      ]
+    },
+    "no_match": {
+      "score": 0.0,
+      "patterns": [
+        "business analyst", "hr manager", "accountant", "project manager",
+        "customer support", "operations manager", "content writer",
+        "sales executive", "civil engineer", "mechanical engineer",
+        "graphic designer", "marketing manager", "product manager",
+        "scrum master", "recruiter", "finance", "legal", "designer"
+      ]
+    }
+  },
+
+  "company_type": {
+    "_comment": "Detected from current_company name. Consulting-only career is a disqualifier per JD.",
+    "consulting_firms": [
+      "tcs", "tata consultancy", "infosys", "wipro", "accenture",
+      "cognizant", "capgemini", "hcl", "hcl technologies", "tech mahindra",
+      "mphasis", "hexaware", "niit", "l&t infotech", "mindtree",
+      "ltimindtree", "persistent systems", "birlasoft", "coforge",
+      "kpit", "cyient", "sonata", "zensar", "mastech"
+    ],
+    "penalty_if_only_consulting": 0.4,
+    "penalty_if_current_consulting": 0.7
+  },
+
+  "location": {
+    "preferred": {
+      "score": 1.0,
+      "cities": ["pune", "noida"]
+    },
+    "acceptable": {
+      "score": 0.8,
+      "cities": ["hyderabad", "mumbai", "delhi", "bangalore", "bengaluru",
+                 "gurugram", "gurgaon", "chennai", "kolkata", "ncr"]
+    },
+    "other_india": {
+      "score": 0.6,
+      "keywords": ["india"]
+    },
+    "outside_india": {
+      "score": 0.1
+    },
+    "relocate_bonus": 0.15
+  },
+
+  "career_trajectory": {
+    "avg_tenure_months_min": 18,
+    "avg_tenure_months_ideal": 30,
+    "title_chaser_penalty": 0.6,
+    "product_company_bonus": 0.1
+  },
+
+  "career_text_keywords": {
+    "strong_signals": [
+      "retrieval", "embedding", "vector", "semantic search", "ranking",
+      "recommendation", "llm", "fine-tun", "rag", "faiss", "pinecone",
+      "elasticsearch", "search infrastructure", "ndcg", "mrr", "a/b test",
+      "production ml", "mlops", "inference", "model serving"
+    ],
+    "weak_signals": [
+      "machine learning", "deep learning", "nlp", "transformer", "bert",
+      "neural network", "classification", "python", "pytorch", "tensorflow"
+    ]
+  },
+
+  "behavioral_signals": {
+    "recency": {
+      "active_30d":     1.15,
+      "active_90d":     1.0,
+      "active_180d":    0.85,
+      "dead_180d_plus": 0.6
+    },
+    "open_to_work": {
+      "true":  1.1,
+      "false": 1.0
+    },
+    "response_rate": {
+      "high_0.7_plus":  1.1,
+      "mid_0.3_to_0.7": 1.0,
+      "low_under_0.3":  0.8
+    },
+    "notice_period": {
+      "0_to_15d":  1.1,
+      "16_to_30d": 1.05,
+      "31_to_60d": 1.0,
+      "61_to_90d": 0.95,
+      "over_90d":  0.85
+    },
+    "github_active": {
+      "score_50_plus": 1.05,
+      "score_0_to_49": 1.0,
+      "no_github":     0.95
+    },
+    "profile_completeness": {
+      "above_80": 1.05,
+      "below_50": 0.9
+    },
+    "multiplier_min": 0.4,
+    "multiplier_max": 1.3
+  },
+
+  "scoring_weights": {
+    "_comment": "Weights sum to 1.0. Skills excluded — EDA showed they were randomly assigned.",
+    "semantic_similarity": 0.50,
+    "title_fit":           0.30,
+    "experience_fit":      0.10,
+    "location_fit":        0.10
+  },
+
+  "honeypot_flags": {
+    "expert_skill_zero_duration_count_threshold": 3,
+    "career_months_exceed_yoe_ratio": 1.4,
+    "impossible_yoe_threshold": 45
+  }
+}
