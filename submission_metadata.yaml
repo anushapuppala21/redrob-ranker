@@ -3,12 +3,12 @@
 # Fill in the blanks (marked TODO) before submitting
 # ============================================================
 
-team_name: "TODO: your-team-name-from-intro-session"
+team_name: "Anusha Puppala"
 
 primary_contact:
   name: "Anusha Puppala"
   email: "anushapuppala2002@gmail.com"
-  phone: "TODO: +91-XXXXXXXXXX"
+  phone: "+91-9701010153"
 
 team_members:
   - name: "Anusha Puppala"
@@ -18,9 +18,9 @@ team_members:
 # ============================================================
 # Code and reproducibility
 # ============================================================
-github_repo: "TODO: https://github.com/YOUR_USERNAME/redrob-ranker"
+github_repo: "https://github.com/anushapuppala21/redrob-ranker"
 
-sandbox_link: "TODO: https://huggingface.co/spaces/YOUR_USERNAME/redrob-ranker"
+sandbox_link: "https://huggingface.co/spaces/Anusha10/redrob-ranker"
 
 reproduce_command: "python scripts/rank.py --candidates data/candidates.jsonl --out outputs/submission.xlsx"
 
@@ -28,15 +28,15 @@ reproduce_command: "python scripts/rank.py --candidates data/candidates.jsonl --
 # Compute environment (fill after running on your machine)
 # ============================================================
 compute:
-  platform: "TODO: e.g. Dell Laptop, Windows 11"
-  cpu_cores: 0          # TODO: fill from nproc / Task Manager
-  ram_gb: 0             # TODO: fill
-  python_version: "TODO: python --version"
-  os: "TODO: e.g. Windows 11 / Ubuntu 22.04"
+  platform: "Dell Laptop, Windows 11"
+  cpu_cores: 12           
+  ram_gb: 16
+  python_version: "3.10.11"
+  os: "Windows 11"
   uses_gpu_for_inference: false         # MUST be false
   has_network_during_ranking: false     # MUST be false
   pre_computation_required: true
-  pre_computation_time_minutes: 20      # approx — update after running precompute.py
+  pre_computation_time_minutes: 89      
 
 # ============================================================
 # AI tools declaration
@@ -74,4 +74,4 @@ declarations:
   code_is_original_work: true
   no_collusion: true
   honeypot_check_done: true
-  reproduction_tested: false    # set true after final end-to-end test
+  reproduction_tested: true    
