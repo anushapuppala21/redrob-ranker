@@ -83,20 +83,20 @@ redrob-ranker/
 
 ## Scoring approach
 
+## Scoring approach
+
 | Component | Weight | What it captures |
 |---|---|---|
-| Semantic similarity | 40% | Embedding cosine sim of profile text vs JD |
-| Title + company fit | 25% | Product co vs consulting, role seniority match |
-| Skills fit | 15% | Semantic match to JD requirements in jd_config.json |
-| Location + trajectory | 10% | India location, career growth pattern |
-| Behavioral multiplier | 10% | Recency, response rate, open_to_work, notice period |
+| Semantic similarity | 50% | Cosine sim of career history text vs JD embedding |
+| Title fit | 30% | AI/ML role vs consulting/unrelated, seniority match |
+| Experience fit | 10% | Years in JD target band (5-9 yrs) |
+| Location fit | 10% | India presence, Pune/Noida preferred, relocation bonus |
 
-Honeypot detection via internal consistency checks (career date overlaps,
-impossible YoE vs history, out-of-range signal values, expert skills with
-zero duration).
+*Skills excluded — EDA revealed skills were randomly assigned in the dataset.*
 
----
+Behavioral multiplier (0.4–1.3×) applied on top: recency, response rate, open_to_work, notice period, GitHub activity.
+
+Honeypot detection via internal consistency checks (expert skills with zero duration, career months exceeding stated YoE).
 
 ## Sandbox
-
-[TODO: add HuggingFace/Streamlit link after deployment]
+https://huggingface.co/spaces/Anusha10/redrob-ranker
